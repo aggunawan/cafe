@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-class OrderIndexController extends Controller
+class OrderCreateController extends Controller
 {
     public function __invoke()
     {
-        return view('orders.index');
+        return view('orders.create');
     }
 }
