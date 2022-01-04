@@ -10,6 +10,10 @@ class OrderShowController extends Controller
     public function __invoke(int $id, OrderRepository $orderRepository)
     {
         $order = $orderRepository->getCreatedOrder($id);
-        return ($order instanceof Order) ? view('orders.show') : abort(404);
+        $order->load(['dishes']);
+
+        return ($order instanceof Order) ?
+            view('orders.show', ['order' => $order]) :
+            abort(404);
     }
 }

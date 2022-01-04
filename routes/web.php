@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\HomeIndexController;
 use App\Http\Controllers\OrderCreateController;
+use App\Http\Controllers\OrderDishStoreController;
 use App\Http\Controllers\OrderShowController;
 use App\Http\Controllers\OrderStoreController;
 use Illuminate\Support\Facades\Route;
+
+Route::post('orders/{id}/dishes', OrderDishStoreController::class)->name('orders.dishes.store');
 
 Route::get('orders/create', OrderCreateController::class)->name('orders.create');
 Route::get('orders/{id}', OrderShowController::class)->name('orders.show');

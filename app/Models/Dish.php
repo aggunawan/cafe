@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * @property string name
- * @property string description
- * @property int price
- * @property ?string picture
- * @property int category_id
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property int $price
+ * @property ?string $picture
+ * @property int $category_id
  */
 class Dish extends Model
 {
