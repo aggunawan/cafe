@@ -14,7 +14,8 @@ class OrderDishStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dish_id' => 'required|numeric|exists:dishes,id'
+            'dish_id' => 'required|numeric|exists:dishes,id',
+            'increment' => 'nullable|numeric|min:1',
         ];
     }
 }

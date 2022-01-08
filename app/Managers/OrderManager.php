@@ -20,11 +20,27 @@ class OrderManager
         return $order;
     }
 
-    public function addDishToOrder(Order $order, Dish $dish): Order
+    public function addDishToOrder(Order $order, Dish $dish, int $increment = null): Order
+    {
+        return $order->dishes->contains($dish->id) ?
+            $this->updateDishQuantityFromOrder($order, $dish, $increment) :
+            $this->addNewDishToOrder($order, $dish);
+    }
+
+    protected function addNewDishToOrder(Order $order, Dish $dish): Order
     {
         $order->dishes()->attach($dish->id, ['quantity' => 1, 'price' => $dish->price]);
         $order->save();
+        return $order;
+    }
 
+    protected function updateDishQuantityFromOrder(Order $order, Dish $dish, int $increment = 1): Order
+    {
+        $order->dishes()->updateExistingPivot($dish->id, [
+            'quantity' => $increment + $order->dishes()->find($dish->id)->pivot->quantity,
+            'price' => $dish->price
+        ]);
+        $order->save();
         return $order;
     }
 }

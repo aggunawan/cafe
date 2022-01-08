@@ -24,7 +24,7 @@ class OrderDishStoreController extends Controller
         $dish = $dishRepository->getDish($request->get('dish_id'));
 
         if ($order instanceof Order && $dish instanceof Dish) {
-            $orderManager->addDishToOrder($order, $dish);
+            $orderManager->addDishToOrder($order, $dish, $request->get('increment'));
         }
 
         return redirect()->route('orders.show', $order->id);
