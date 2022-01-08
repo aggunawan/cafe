@@ -6,13 +6,15 @@ use Spatie\Enum\Laravel\Enum;
 
 /**
  * @method static self CREATED()
+ * @method static self PLACED()
  */
 final class OrderStatusEnum extends Enum
 {
     protected static function values(): array
     {
         return [
-            'CREATED' => 1
+            'CREATED' => 1,
+            'PLACED' => 2,
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Managers;
 
 use App\Enums\OrderPaymentTypeEnum;
+use App\Enums\OrderStatusEnum;
 use App\Models\Dish;
 use App\Models\Order;
 
@@ -65,6 +66,19 @@ class OrderManager
     protected function removeExistingDishFromOrder(Order $order, Dish $dish): Order
     {
         $order->dishes()->detach($dish->id);
+        $order->save();
+        return $order;
+    }
+
+    public function placeOrder(Order $order, int $paymentMethod): Order
+    {
+        $order->status = OrderStatusEnum::PLACED()->value;
+        $order->payment_type = $paymentMethod;
+
+        foreach ($order->dishes as $dish) {
+            $order->dishes()->updateExistingPivot($dish->id, ['price' => $dish->price]);
+        }
+
         $order->save();
         return $order;
     }

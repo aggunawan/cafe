@@ -1,3 +1,5 @@
+Status {{ $order->status }}
+<br>
 Dishes
 <ul>
     @foreach($order->dishes as $dish)
@@ -10,4 +12,5 @@ Dishes
 </ul>
 
 @include('orders.dishes.create', ['order' => $order])
+@include('orders.places.create', ['order' => $order, 'paymentMethods' => $paymentMethods])
 
