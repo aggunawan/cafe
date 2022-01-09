@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Enums\OrderPaymentTypeEnum;
 use App\Enums\OrderStatusEnum;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Builder;
 
 class OrderRepository
 {
@@ -24,5 +25,12 @@ class OrderRepository
             ->where('status', OrderStatusEnum::PLACED())
             ->where('id', $id)
             ->first();
+    }
+
+    public function getPlacedOrdersQuery(): Builder
+    {
+        return Order::query()
+            ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
+            ->where('status', OrderStatusEnum::PLACED());
     }
 }
