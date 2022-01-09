@@ -6,9 +6,11 @@ use App\Http\Controllers\OrderDishDeleteController;
 use App\Http\Controllers\OrderDishStoreController;
 use App\Http\Controllers\OrderPlaceStoreController;
 use App\Http\Controllers\OrderShowController;
+use App\Http\Controllers\OrderStateIndexController;
 use App\Http\Controllers\OrderStoreController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('orders/{id}/states', OrderStateIndexController::class)->name('orders.states.index');
 Route::post('orders/{id}/places', OrderPlaceStoreController::class)->name('orders.places.store');
 Route::delete('orders/{id}/dishes/{dish}', OrderDishDeleteController::class)->name('orders.dishes.delete');
 Route::post('orders/{id}/dishes', OrderDishStoreController::class)->name('orders.dishes.store');

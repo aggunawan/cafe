@@ -19,7 +19,7 @@ class OrderPlaceStoreController extends Controller
         $order = $orderRepository->getCreatedOrder($id);
         if ($order instanceof Order) {
             $orderManager->placeOrder($order, $request->get('payment_method'));
-            return redirect()->route('orders.create');
+            return redirect()->route('orders.states.index', $id);
         }
         return abort(404);
     }

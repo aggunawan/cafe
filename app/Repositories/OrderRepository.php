@@ -16,4 +16,13 @@ class OrderRepository
             ->where('id', $id)
             ->first();
     }
+
+    public function getPlacedOrder(int $id)
+    {
+        return Order::query()
+            ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
+            ->where('status', OrderStatusEnum::PLACED())
+            ->where('id', $id)
+            ->first();
+    }
 }
