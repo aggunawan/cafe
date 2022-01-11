@@ -19,5 +19,6 @@
 
 <body class="welcome">
     @yield('content')
+    <script src="{{ asset('js/guest.js') }}"></script>
 </body>
 </html>

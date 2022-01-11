@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeIndexController;
+use App\Http\Controllers\MenuIndexController;
 use App\Http\Controllers\OrderCreateController;
 use App\Http\Controllers\OrderDishDeleteController;
 use App\Http\Controllers\OrderDishStoreController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ScanIndexController;
 use App\Http\Controllers\WelcomeIndexController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('menus', MenuIndexController::class)->name('menus.index');
 Route::get('scans', ScanIndexController::class)->name('scans.index');
 Route::get('welcomes', WelcomeIndexController::class)->name('welcomes.index');
 
