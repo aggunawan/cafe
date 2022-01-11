@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.5",
         "orchid/crud": "^3.2",
         "orchid/platform": "^10.29",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-enum": "^2.5"
     },
     "require-dev": {

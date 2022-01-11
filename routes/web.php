@@ -8,9 +8,11 @@ use App\Http\Controllers\OrderPlaceStoreController;
 use App\Http\Controllers\OrderShowController;
 use App\Http\Controllers\OrderStateIndexController;
 use App\Http\Controllers\OrderStoreController;
+use App\Http\Controllers\ScanIndexController;
 use App\Http\Controllers\WelcomeIndexController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('scans', ScanIndexController::class)->name('scans.index');
 Route::get('welcomes', WelcomeIndexController::class)->name('welcomes.index');
 
 Route::get('orders/{id}/states', OrderStateIndexController::class)->name('orders.states.index');
