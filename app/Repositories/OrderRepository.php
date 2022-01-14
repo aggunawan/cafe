@@ -42,4 +42,20 @@ class OrderRepository
             ->where('id', $id)
             ->first();
     }
+
+    public function getVerifiedOrder(int $id)
+    {
+        return Order::query()
+            ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
+            ->whereIn('status', [OrderStatusEnum::VERIFIED()])
+            ->where('id', $id)
+            ->first();
+    }
+
+    public function getVerifiedOrdersQuery(): Builder
+    {
+        return Order::query()
+            ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
+            ->whereIn('status', [OrderStatusEnum::VERIFIED()]);
+    }
 }

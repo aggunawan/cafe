@@ -6,6 +6,8 @@ use App\Http\Controllers\OrderCreateController;
 use App\Http\Controllers\OrderDishDeleteController;
 use App\Http\Controllers\OrderDishStoreController;
 use App\Http\Controllers\OrderPlaceStoreController;
+use App\Http\Controllers\OrderServeIndexController;
+use App\Http\Controllers\OrderServeStoreController;
 use App\Http\Controllers\OrderShowController;
 use App\Http\Controllers\OrderStateIndexController;
 use App\Http\Controllers\OrderStoreController;
@@ -17,6 +19,8 @@ Route::get('menus', MenuIndexController::class)->name('menus.index');
 Route::get('scans', ScanIndexController::class)->name('scans.index');
 Route::get('welcomes', WelcomeIndexController::class)->name('welcomes.index');
 
+Route::post('orders/servers', OrderServeStoreController::class)->name('orders.servers.store');
+Route::get('orders/servers', OrderServeIndexController::class)->name('orders.servers.index');
 Route::get('orders/{id}/states', OrderStateIndexController::class)->name('orders.states.index');
 Route::post('orders/{id}/places', OrderPlaceStoreController::class)->name('orders.places.store');
 Route::delete('orders/{id}/dishes/{dish}', OrderDishDeleteController::class)->name('orders.dishes.delete');
