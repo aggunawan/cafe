@@ -52,11 +52,7 @@ class OrderResource extends Resource
                 return number_format($model->dishes()->sum('quantity'));
             }),
             TD::make('total_price', 'Total Price')->render(function ($model) {
-                $total = 0;
-                foreach ($model->dishes as $dish) {
-                    $total += $dish->pivot->quantity * $dish->pivot->price;
-                }
-                return number_format($total);
+                return number_format($model->total_price);
             }),
             TD::make('payment_type', 'Payment')->render(function ($model) {
                 return OrderPaymentTypeEnum::from($model->payment_type)->label;
@@ -78,11 +74,7 @@ class OrderResource extends Resource
                 return number_format($model->dishes()->sum('quantity'));
             }),
             Sight::make('total_price', 'Total Price')->render(function ($model) {
-                $total = 0;
-                foreach ($model->dishes as $dish) {
-                    $total += $dish->pivot->quantity * $dish->pivot->price;
-                }
-                return number_format($total);
+                return number_format($model->total_price);
             }),
             Sight::make('payment_type', 'Payment')->render(function ($model) {
                 return OrderPaymentTypeEnum::from($model->payment_type)->label;

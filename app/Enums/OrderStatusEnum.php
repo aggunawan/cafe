@@ -7,6 +7,7 @@ use Spatie\Enum\Laravel\Enum;
 /**
  * @method static self CREATED()
  * @method static self PLACED()
+ * @method static self VERIFIED()
  */
 final class OrderStatusEnum extends Enum
 {
@@ -15,6 +16,7 @@ final class OrderStatusEnum extends Enum
         return [
             'CREATED' => 1,
             'PLACED' => 2,
+            'VERIFIED' => 3,
         ];
     }
 }

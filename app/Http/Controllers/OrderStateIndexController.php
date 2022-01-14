@@ -12,7 +12,7 @@ class OrderStateIndexController extends Controller
         OrderRepository $orderRepository
     )
     {
-        $order = $orderRepository->getPlacedOrder($id);
+        $order = $orderRepository->getConfirmedOrder($id);
         if ($order instanceof Order) {
             $order->load(['dishes']);
             return view('orders.states.index', [

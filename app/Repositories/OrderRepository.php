@@ -33,4 +33,13 @@ class OrderRepository
             ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
             ->where('status', OrderStatusEnum::PLACED());
     }
+
+    public function getConfirmedOrder(int $id)
+    {
+        return Order::query()
+            ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
+            ->whereIn('status', [OrderStatusEnum::PLACED(), OrderStatusEnum::VERIFIED()])
+            ->where('id', $id)
+            ->first();
+    }
 }
