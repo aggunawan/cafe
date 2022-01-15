@@ -17,6 +17,11 @@ class DishResource extends Resource
 {
     public static $model = Dish::class;
 
+    public static function permission(): ?string
+    {
+        return 'platform.app.dishes';
+    }
+
     public function with(): array
     {
         return [

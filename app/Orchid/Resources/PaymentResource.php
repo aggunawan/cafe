@@ -28,6 +28,11 @@ class PaymentResource extends Resource
         $this->orderRepository = $orderRepository;
     }
 
+    public static function permission(): ?string
+    {
+        return 'platform.app.payments';
+    }
+
     public function with(): array
     {
         return [

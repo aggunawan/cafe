@@ -13,6 +13,11 @@ class CategoryResource extends Resource
 {
     public static $model = Category::class;
 
+    public static function permission(): ?string
+    {
+        return 'platform.app.categories';
+    }
+
     public function fields(): array
     {
         return [

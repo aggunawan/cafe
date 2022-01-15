@@ -22,6 +22,11 @@ class OrderResource extends Resource
         $this->orderRepository = $orderRepository;
     }
 
+    public static function permission(): ?string
+    {
+        return 'platform.app.orders';
+    }
+
     public function paginationQuery(ResourceRequest $request, Model $model): Builder
     {
         return $this->orderRepository->getConfirmedOrdersQuery();
