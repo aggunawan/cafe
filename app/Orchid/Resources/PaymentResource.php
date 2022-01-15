@@ -3,10 +3,10 @@
 namespace App\Orchid\Resources;
 
 use App\Enums\OrderPaymentTypeEnum;
-use App\Enums\OrderStatusEnum;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Repositories\OrderRepository;
+use App\Services\PaymentService;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Crud\Resource;
 use Orchid\Crud\ResourceRequest;
@@ -19,10 +19,12 @@ class PaymentResource extends Resource
 {
     public static $model = Payment::class;
 
+    private $paymentService;
     private $orderRepository;
 
-    public function __construct(OrderRepository $orderRepository)
+    public function __construct(PaymentService $paymentService, OrderRepository $orderRepository)
     {
+        $this->paymentService = $paymentService;
         $this->orderRepository = $orderRepository;
     }
 
@@ -131,29 +133,11 @@ class PaymentResource extends Resource
     public function onSave(ResourceRequest $request, Model $model)
     {
         $order = $this->orderRepository->getPlacedOrder($request->validated()['model']['order_id']);
-
-        if ($order instanceof Order) {
-            $attrs = collect($request->all());
-
-            if ($order->payment_type->equals(OrderPaymentTypeEnum::CASH())) {
-                $attrs->put('change', $attrs->get('paid') - $order->total_price);
-            } else {
-                $attrs->put('change', 0);
-                $attrs->put('paid', $order->total_price);
-            }
-
-            $model->forceFill($attrs->toArray())->save();
-            $order->status = OrderStatusEnum::VERIFIED();
-            $order->save();
-        }
+        if ($order instanceof Order) $this->paymentService->pay($order, $request->all()['paid']);
     }
 
     public function onDelete(Model $model)
     {
-        if ($model instanceof Payment) {
-            $model->order->status = OrderStatusEnum::PLACED();
-            $model->order->save();
-            $model->delete();
-        }
+        if ($model instanceof Payment) $this->paymentService->delete($model);
     }
 }

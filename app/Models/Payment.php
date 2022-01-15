@@ -11,6 +11,8 @@ use Orchid\Screen\AsSource;
 
 /**
  * @property Order $order
+ * @property int $paid
+ * @property int $change
  */
 class Payment extends Model
 {

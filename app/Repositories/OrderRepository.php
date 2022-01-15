@@ -27,18 +27,20 @@ class OrderRepository
             ->first();
     }
 
-    public function getPlacedOrdersQuery(): Builder
+    public function getConfirmedOrdersQuery(): Builder
     {
         return Order::query()
             ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
-            ->where('status', OrderStatusEnum::PLACED());
+            ->whereIn('status', [
+                OrderStatusEnum::PLACED(),
+                OrderStatusEnum::VERIFIED(),
+                OrderStatusEnum::SERVED(),
+            ]);
     }
 
     public function getConfirmedOrder(int $id)
     {
-        return Order::query()
-            ->where('payment_type','!=', OrderPaymentTypeEnum::CREATED())
-            ->whereIn('status', [OrderStatusEnum::PLACED(), OrderStatusEnum::VERIFIED()])
+        return $this->getConfirmedOrdersQuery()
             ->where('id', $id)
             ->first();
     }

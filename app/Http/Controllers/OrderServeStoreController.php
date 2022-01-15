@@ -17,7 +17,7 @@ class OrderServeStoreController extends Controller
         OrderRepository $orderRepository
     ): RedirectResponse
     {
-        $order = $orderRepository->getConfirmedOrder($request->get('order_id'));
+        $order = $orderRepository->getVerifiedOrder($request->get('order_id'));
 
         if ($order instanceof Order) {
             if ($order->status->equals(OrderStatusEnum::VERIFIED())) {

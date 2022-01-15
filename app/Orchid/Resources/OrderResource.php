@@ -24,12 +24,12 @@ class OrderResource extends Resource
 
     public function paginationQuery(ResourceRequest $request, Model $model): Builder
     {
-        return $this->orderRepository->getPlacedOrdersQuery();
+        return $this->orderRepository->getConfirmedOrdersQuery();
     }
 
     public function modelQuery(ResourceRequest $request, Model $model): Builder
     {
-        return $this->orderRepository->getPlacedOrdersQuery();
+        return $this->orderRepository->getConfirmedOrdersQuery();
     }
 
     public function fields(): array
@@ -78,6 +78,9 @@ class OrderResource extends Resource
             }),
             Sight::make('payment_type', 'Payment')->render(function ($model) {
                 return OrderPaymentTypeEnum::from($model->payment_type)->label;
+            }),
+            Sight::make('status')->render(function ($model) {
+                return $model->status->label;
             }),
             Sight::make('dishes')->render(function ($model) {
                 $dishes = collect();
