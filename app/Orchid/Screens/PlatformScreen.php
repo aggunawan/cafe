@@ -42,17 +42,18 @@ class PlatformScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::make('Website')
-                ->href('http://orchid.software')
-                ->icon('globe-alt'),
+            Link::make('Chef Panel')
+                ->route('orders.servers.index')
+                ->icon('globe-alt')
+                ->canSee(auth()->user()->hasAccess('platform.app.servers')),
 
-            Link::make('Documentation')
-                ->href('https://orchid.software/en/docs')
-                ->icon('docs'),
-
-            Link::make('GitHub')
-                ->href('https://github.com/orchidsoftware/platform')
-                ->icon('social-github'),
+//            Link::make('Documentation')
+//                ->href('https://orchid.software/en/docs')
+//                ->icon('docs'),
+//
+//            Link::make('GitHub')
+//                ->href('https://github.com/orchidsoftware/platform')
+//                ->icon('social-github'),
         ];
     }
 

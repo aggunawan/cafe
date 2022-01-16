@@ -121,7 +121,8 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.app.orders', __('Order'))
                 ->addPermission('platform.app.dishes', __('Dish'))
                 ->addPermission('platform.app.payments', __('Payment'))
-                ->addPermission('platform.app.categories', __('Category')),
+                ->addPermission('platform.app.categories', __('Category'))
+                ->addPermission('platform.app.servers', __('Serve')),
         ];
     }
 }

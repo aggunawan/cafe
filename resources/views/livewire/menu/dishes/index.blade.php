@@ -1,7 +1,7 @@
 <div class="row">
     @if($category)
         @foreach($category->dishes as $dish)
-            <div class="col-3">
+            <div class="col-12 col-lg-3">
                 <div
                     class="card shadow border-1 mb-4"
                     role="button"

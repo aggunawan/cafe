@@ -8,6 +8,7 @@ class HomeIndexController extends Controller
 {
     public function __invoke(): RedirectResponse
     {
-        return redirect()->route('orders.create');
+        $route = auth()->check() ? 'platform.main' : 'orders.create';
+        return redirect()->route($route);
     }
 }
