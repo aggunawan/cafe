@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Repositories\OrderRepository;
 use App\Services\OrderService;
 use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderServeStoreController extends Controller
 {
@@ -22,6 +23,7 @@ class OrderServeStoreController extends Controller
         if ($order instanceof Order) {
             if ($order->status->equals(OrderStatusEnum::VERIFIED())) {
                 $orderService->serve($order);
+                Alert::success('Order Served');
                 return redirect()->route('orders.servers.index');
             }
         }
