@@ -8,6 +8,6 @@ class HomeIndexController extends Controller
 {
     public function __invoke(): RedirectResponse
     {
-        return redirect()->route('menus.index');
+        return redirect()->route('orders.create');
     }
 }
