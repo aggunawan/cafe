@@ -34,10 +34,10 @@
                 Belum Dibayar
                 @break
                 @case(3)
-                Sudah Dibayar / Dalam Proses
+                Dibayar / Proses
                 @break
                 @case(4)
-                Siap Dihidangkan
+                Dihidangkan
                 @break
             @endswitch
         </p>

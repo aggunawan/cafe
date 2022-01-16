@@ -1,6 +1,6 @@
 <div class="row justify-content-center py-5" wire:poll="fetchOrders">
     @foreach($orders as $order)
-        <div class="col-12 col-lg-4">
+        <div class="col-11 col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-grid">

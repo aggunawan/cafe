@@ -6,15 +6,17 @@
                     <div class="row">
                         <div class="col d-flex">
                             <div class="w-auto">
-                                <img src="{{ asset('images/bag.png') }}" alt="Order" style="max-height: 50px">
+                                <img src="{{ asset('images/bag.png') }}" alt="Order" style="max-height: 40px">
                             </div>
                             <div class="px-4 d-flex align-items-center">
-                                <p class="mb-0 h5"><strong>{{ $order->dishes->sum('pivot.quantity') }} items</strong></p>
+                                <p class="mb-0"><strong>{{ $order->dishes->sum('pivot.quantity') }} items</strong></p>
                             </div>
                         </div>
                         <div class="col d-flex align-items-center justify-content-end">
                             <div class="d-flex flex-row">
-                                <p class="mb-0 h5 mx-2"><strong>{{ number_format($order->total_price) }}</strong></p>
+                                @if($order->total_price != 0)
+                                    <p class="mb-0 h5 mx-2"><strong>{{ number_format($order->total_price) }}</strong></p>
+                                @endif
                                 <img src="{{ asset('images/up.png') }}" alt="Show Order" style="width: 20px">
                             </div>
                         </div>

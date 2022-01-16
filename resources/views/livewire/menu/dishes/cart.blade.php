@@ -8,7 +8,7 @@
         <div class="modal-content">
             @if($dish)
                 <div class="modal-body">
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column mb-4">
                         <img src="{{ $dish->picture }}" alt="{{ $dish->name }}" class="img-thumbnail mb-4">
                         <p class="lead">{{ $dish->name }}</p>
                         <p class="mb-0 text-secondary">{{ $dish->description }}</p>
