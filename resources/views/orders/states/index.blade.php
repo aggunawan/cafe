@@ -1,9 +1,11 @@
-<ul>
-    @foreach($order->dishes as $dish)
-        <li>{{ $dish->id }}. {{ $dish->name }} {{ $dish->pivot->price }} ({{ $dish->pivot->quantity }})</li>
-    @endforeach
-</ul>
+@extends('layouts.guest')
 
-Status : {{ $order->status }}
-<br>
-Payment Method : {{ $order->payment_type }}
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center py-5">
+            <div class="col-12 col-lg-4">
+                @livewire('my-order', ['order' => $order])
+            </div>
+        </div>
+    </div>
+@endsection

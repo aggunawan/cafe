@@ -8,14 +8,14 @@ use App\Models\Payment;
 
 class PaymentService
 {
-    private $orderService;
+    private OrderService $orderService;
 
     public function __construct(OrderService $orderService)
     {
         $this->orderService = $orderService;
     }
 
-    public function pay(Order $order, int $pay): Payment
+    public function pay(Order $order, int $pay = null): Payment
     {
         $payment = new Payment();
         $payment->change = 0;

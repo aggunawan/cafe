@@ -6,6 +6,7 @@ use App\Managers\OrderManager;
 use App\Models\Order;
 use App\Repositories\OrderRepository;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderSummary extends Component
 {
@@ -41,6 +42,7 @@ class OrderSummary extends Component
     public function submitOrder(OrderManager $orderManager)
     {
         $orderManager->placeOrder($this->order, $this->paymentMethod);
+        Alert::success('Order Placed', 'Please paid Your Order at Cashier');
         return redirect()->route('orders.states.index', $this->order->id);
     }
 }
