@@ -23,9 +23,11 @@ class OrderManager
 
     public function addDishToOrder(Order $order, Dish $dish, int $increment = 1): Order
     {
-        return $order->dishes->contains($dish->id) ?
+        $order->dishes->contains($dish->id) ?
             $this->incrementDishQuantityFromOrder($order, $dish, $increment) :
             $this->addNewDishToOrder($order, $dish);
+
+        return $order->refresh();
     }
 
     protected function addNewDishToOrder(Order $order, Dish $dish): Order
@@ -57,10 +59,12 @@ class OrderManager
 
     public function removeDishFromOrder(Order $order, Dish $dish, int $decrement = 1): Order
     {
-        return $order->dishes()->find($dish->id)->pivot->quantity == 1 ||
-            $decrement >= $order->dishes()->find($dish->id)->pivot->quantity ?
+        $order->dishes()->find($dish->id)->pivot->quantity == 1 ||
+        $decrement >= $order->dishes()->find($dish->id)->pivot->quantity ?
             $this->removeExistingDishFromOrder($order, $dish) :
             $this->decrementDishQuantityFromOrder($order, $dish, $decrement);
+
+        return $order->refresh();
     }
 
     protected function removeExistingDishFromOrder(Order $order, Dish $dish): Order
